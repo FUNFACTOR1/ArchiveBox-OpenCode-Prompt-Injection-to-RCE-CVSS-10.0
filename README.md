@@ -11,6 +11,8 @@
 **Disclosure date:** 13 September 2026
 
 ---
+<img width="1448" height="1086" alt="ChatGPT Image 17 set 2026, 18_01_54" src="https://github.com/user-attachments/assets/c9e5d0fd-50ca-413f-a234-dffd86f08d02" />
+
 
 ## Summary
 
