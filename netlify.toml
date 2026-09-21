@@ -1,0 +1,25 @@
+# Netlify configuration
+#
+# The repository contains only README.md, so the deploy had no document to
+# serve and every URL returned 404. The published output is now a rendered
+# preview of that README.
+#
+# README.md is copied into the publish directory at deploy time so the page can
+# fetch and render it. The committed README stays the single source of truth —
+# its text is not duplicated anywhere in the site.
+
+[build]
+  publish = "public"
+  command = "cp README.md public/README.md"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/README.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+    Cache-Control = "public, max-age=0, must-revalidate"
