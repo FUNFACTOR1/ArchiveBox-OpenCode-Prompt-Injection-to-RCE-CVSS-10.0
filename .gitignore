@@ -1,0 +1,3 @@
+# Copied into the publish directory by the Netlify build command so the
+# preview page can fetch it. Not a source file.
+public/README.md

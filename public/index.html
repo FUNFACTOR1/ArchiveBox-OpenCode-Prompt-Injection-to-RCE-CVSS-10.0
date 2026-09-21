@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArchiveBox OpenCode — CAN-2026-2036559 — README</title>
+<meta name="description" content="Rendered preview of the repository README: security advisory CAN-2026-2036559, ArchiveBox OpenCode indirect prompt injection to arbitrary command execution, CVSS 4.0 10.0 CRITICAL.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown.css">
+<style>
+  /* GitHub file-view chrome. The README itself is styled by
+     github-markdown-css, which already follows prefers-color-scheme. */
+  :root {
+    --page: #ffffff;
+    --edge: #d1d9e0;
+    --bar:  #f6f8fa;
+    --dim:  #59636e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0d1117;
+      --edge: #3d444d;
+      --bar:  #151b23;
+      --dim:  #9198a1;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--page);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 1012px; margin: 0 auto; padding: 24px 16px 64px; }
+  .file { border: 1px solid var(--edge); border-radius: 6px; overflow: hidden; }
+  .file__bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    background: var(--bar);
+    border-bottom: 1px solid var(--edge);
+    font-size: 14px; font-weight: 600;
+    color: var(--dim);
+  }
+  .file__bar svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+  .markdown-body { box-sizing: border-box; padding: 32px; }
+  .markdown-body img { max-width: 100%; height: auto; }
+  .state { padding: 32px; color: var(--dim); font-size: 14px; }
+  @media (max-width: 767px) { .markdown-body { padding: 16px; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="file">
+      <div class="file__bar">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"/></svg>
+        README.md
+      </div>
+      <article class="markdown-body" id="readme">
+        <p class="state" id="state">Loading README&hellip;</p>
+      </article>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+/* Renders the repository's own README.md. The file is copied into the publish
+   directory at deploy time, so this preview always reflects the committed
+   README rather than a second copy of its text. */
+(function () {
+  'use strict';
+
+  var target = document.getElementById('readme');
+  var state = document.getElementById('state');
+
+  var fail = function (msg) {
+    if (state) { state.textContent = msg; }
+  };
+
+  fetch('/README.md', { cache: 'no-cache' })
+    .then(function (res) {
+      if (!res.ok) { throw new Error('HTTP ' + res.status); }
+      return res.text();
+    })
+    .then(function (md) {
+      if (typeof marked === 'undefined') {
+        throw new Error('renderer unavailable');
+      }
+      marked.setOptions({ gfm: true, breaks: false });
+      target.innerHTML = marked.parse(md);
+
+      /* Open every link in the README in a new tab, as GitHub does for
+         external references. */
+      target.querySelectorAll('a[href^="http"]').forEach(function (a) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      });
+
+      var h1 = target.querySelector('h1');
+      if (h1) { document.title = h1.textContent.trim() + ' — README'; }
+
+      if (window.location.hash) {
+        var anchor = document.getElementById(window.location.hash.slice(1));
+        if (anchor) { anchor.scrollIntoView(); }
+      }
+    })
+    .catch(function (err) {
+      fail('Could not load README.md (' + err.message + ').');
+    });
+}());
+</script>
+</body>
+</html>
